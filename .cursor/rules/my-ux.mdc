@@ -1,0 +1,1033 @@
+---
+description:此UI设计规范为您的英文网红营销网站提供了完整的视觉和交互指南，强调专业信任感与艺术表达的平衡。请根据实际需求进行调整和扩展。
+globs:
+alwaysApply: true
+---
+
+# UI Design System for Influencer Marketing Platform
+
+## 1. Design Philosophy 设计理念
+
+### Core Values 核心价值观
+- **Professional Trust** 专业信任感：通过清晰的层级结构和一致的设计语言建立用户信任
+- **Artistic Expression** 艺术表达：融入创意元素，体现网红营销的创造力和活力
+- **User-Centric** 用户中心：简化复杂流程，让营销管理变得轻松直观
+
+### Design Principles 设计原则
+1. **Clarity First** 清晰优先：信息架构清晰，降低认知负荷
+2. **Consistent Experience** 一致体验：跨平台保持视觉和交互的一致性
+3. **Elegant Simplicity** 优雅简约：删繁就简，专注核心功能
+4. **Emotional Connection** 情感连接：通过视觉设计传递品牌温度
+
+## 2. Color System 色彩系统
+
+### Primary Colors 主色调
+```css
+:root {
+  /* Trust Blue - 传递专业和信任 */
+  --primary-600: #2563EB;  /* Main Action */
+  --primary-500: #3B82F6;  /* Hover State */
+  --primary-400: #60A5FA;  /* Active State */
+  --primary-100: #EFF6FF;  /* Background */
+  
+  /* Creative Purple - 体现创意和艺术 */
+  --accent-600: #7C3AED;   /* Secondary Action */
+  --accent-500: #8B5CF6;   /* Hover State */
+  --accent-400: #A78BFA;   /* Active State */
+  --accent-100: #F5F3FF;   /* Background */
+}
+```
+
+### Neutral Colors 中性色
+```css
+:root {
+  /* Gray Scale - 内容层级 */
+  --gray-900: #111827;  /* Primary Text */
+  --gray-700: #374151;  /* Secondary Text */
+  --gray-500: #6B7280;  /* Tertiary Text */
+  --gray-400: #9CA3AF;  /* Placeholder */
+  --gray-200: #E5E7EB;  /* Borders */
+  --gray-100: #F3F4F6;  /* Background */
+  --gray-50:  #F9FAFB;  /* Light Background */
+  
+  /* Pure Colors */
+  --white: #FFFFFF;
+  --black: #000000;
+}
+```
+
+### Semantic Colors 语义色
+```css
+:root {
+  /* Status Colors */
+  --success-600: #059669;  /* Success Dark */
+  --success-500: #10B981;  /* Success Default */
+  --success-100: #ECFDF5;  /* Success Light */
+  
+  --warning-600: #D97706;  /* Warning Dark */
+  --warning-500: #F59E0B;  /* Warning Default */
+  --warning-100: #FEF3C7;  /* Warning Light */
+  
+  --error-600: #DC2626;    /* Error Dark */
+  --error-500: #EF4444;    /* Error Default */
+  --error-100: #FEE2E2;    /* Error Light */
+  
+  --info-600: #0891B2;     /* Info Dark */
+  --info-500: #06B6D4;     /* Info Default */
+  --info-100: #ECFEFF;     /* Info Light */
+}
+```
+
+## 3. Typography System 字体系统
+
+### Font Family 字体家族
+```css
+:root {
+  /* Primary Font - 主字体 */
+  --font-primary: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  
+  /* Display Font - 展示字体 */
+  --font-display: 'Poppins', 'Inter', sans-serif;
+  
+  /* Monospace - 等宽字体 */
+  --font-mono: 'JetBrains Mono', 'Courier New', monospace;
+}
+```
+
+### Type Scale 字体规模
+```css
+:root {
+  /* Headings */
+  --text-5xl: 3rem;        /* 48px - Page Title */
+  --text-4xl: 2.25rem;     /* 36px - Section Title */
+  --text-3xl: 1.875rem;    /* 30px - Subsection */
+  --text-2xl: 1.5rem;      /* 24px - Card Title */
+  --text-xl: 1.25rem;      /* 20px - Emphasis */
+  --text-lg: 1.125rem;     /* 18px - Large Body */
+  
+  /* Body */
+  --text-base: 1rem;       /* 16px - Body Text */
+  --text-sm: 0.875rem;     /* 14px - Small Text */
+  --text-xs: 0.75rem;      /* 12px - Caption */
+  
+  /* Line Height */
+  --leading-tight: 1.25;
+  --leading-normal: 1.5;
+  --leading-relaxed: 1.75;
+  
+  /* Font Weight */
+  --font-normal: 400;
+  --font-medium: 500;
+  --font-semibold: 600;
+  --font-bold: 700;
+}
+```
+
+### Typography Styles 字体样式
+```css
+/* Display Heading */
+.heading-display {
+  font-family: var(--font-display);
+  font-size: var(--text-5xl);
+  font-weight: var(--font-bold);
+  line-height: var(--leading-tight);
+  letter-spacing: -0.02em;
+  color: var(--gray-900);
+}
+
+/* Page Heading */
+.heading-page {
+  font-family: var(--font-display);
+  font-size: var(--text-4xl);
+  font-weight: var(--font-semibold);
+  line-height: var(--leading-tight);
+  color: var(--gray-900);
+}
+
+/* Section Heading */
+.heading-section {
+  font-family: var(--font-primary);
+  font-size: var(--text-2xl);
+  font-weight: var(--font-semibold);
+  line-height: var(--leading-normal);
+  color: var(--gray-900);
+}
+
+/* Body Text */
+.text-body {
+  font-family: var(--font-primary);
+  font-size: var(--text-base);
+  font-weight: var(--font-normal);
+  line-height: var(--leading-relaxed);
+  color: var(--gray-700);
+}
+
+/* Small Text */
+.text-small {
+  font-family: var(--font-primary);
+  font-size: var(--text-sm);
+  font-weight: var(--font-normal);
+  line-height: var(--leading-normal);
+  color: var(--gray-500);
+}
+```
+
+## 4. Spacing System 间距系统
+
+### Base Unit 基础单位
+```css
+:root {
+  --space-unit: 0.25rem; /* 4px */
+  
+  /* Spacing Scale */
+  --space-0: 0;
+  --space-1: calc(var(--space-unit) * 1);   /* 4px */
+  --space-2: calc(var(--space-unit) * 2);   /* 8px */
+  --space-3: calc(var(--space-unit) * 3);   /* 12px */
+  --space-4: calc(var(--space-unit) * 4);   /* 16px */
+  --space-5: calc(var(--space-unit) * 5);   /* 20px */
+  --space-6: calc(var(--space-unit) * 6);   /* 24px */
+  --space-8: calc(var(--space-unit) * 8);   /* 32px */
+  --space-10: calc(var(--space-unit) * 10); /* 40px */
+  --space-12: calc(var(--space-unit) * 12); /* 48px */
+  --space-16: calc(var(--space-unit) * 16); /* 64px */
+  --space-20: calc(var(--space-unit) * 20); /* 80px */
+  --space-24: calc(var(--space-unit) * 24); /* 96px */
+}
+```
+
+### Grid System 网格系统
+```css
+:root {
+  /* Container */
+  --container-max: 1280px;
+  --container-padding: var(--space-6);
+  
+  /* Grid */
+  --grid-columns: 12;
+  --grid-gap: var(--space-6);
+}
+
+.container {
+  max-width: var(--container-max);
+  margin: 0 auto;
+  padding: 0 var(--container-padding);
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(var(--grid-columns), 1fr);
+  gap: var(--grid-gap);
+}
+```
+
+## 5. Component Library 组件库
+
+### Buttons 按钮
+
+#### Primary Button
+```css
+.btn-primary {
+  /* Layout */
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--space-3) var(--space-6);
+  
+  /* Typography */
+  font-family: var(--font-primary);
+  font-size: var(--text-base);
+  font-weight: var(--font-medium);
+  line-height: 1;
+  
+  /* Style */
+  background-color: var(--primary-600);
+  color: var(--white);
+  border: none;
+  border-radius: 0.5rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  
+  /* Shadow */
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.btn-primary:hover {
+  background-color: var(--primary-500);
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  transform: translateY(-1px);
+}
+
+.btn-primary:active {
+  background-color: var(--primary-700);
+  transform: translateY(0);
+}
+```
+
+#### Secondary Button
+```css
+.btn-secondary {
+  /* Inherits base button styles */
+  padding: var(--space-3) var(--space-6);
+  
+  /* Style */
+  background-color: var(--white);
+  color: var(--primary-600);
+  border: 2px solid var(--primary-600);
+  border-radius: 0.5rem;
+}
+
+.btn-secondary:hover {
+  background-color: var(--primary-100);
+  border-color: var(--primary-500);
+}
+```
+
+#### Ghost Button
+```css
+.btn-ghost {
+  padding: var(--space-3) var(--space-6);
+  background-color: transparent;
+  color: var(--gray-700);
+  border: none;
+  border-radius: 0.5rem;
+}
+
+.btn-ghost:hover {
+  background-color: var(--gray-100);
+  color: var(--gray-900);
+}
+```
+
+### Cards 卡片
+
+#### Base Card
+```css
+.card {
+  /* Layout */
+  padding: var(--space-6);
+  
+  /* Style */
+  background-color: var(--white);
+  border: 1px solid var(--gray-200);
+  border-radius: 1rem;
+  
+  /* Shadow */
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+  transition: all 0.3s ease;
+}
+
+.card:hover {
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.08);
+  transform: translateY(-2px);
+}
+```
+
+#### Influencer Card
+```css
+.influencer-card {
+  /* Base card styles */
+  position: relative;
+  overflow: hidden;
+  
+  /* Gradient Border Effect */
+  background: linear-gradient(135deg, var(--white) 0%, var(--white) 100%);
+  border: 2px solid transparent;
+  background-clip: padding-box;
+}
+
+.influencer-card::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  border-radius: 1rem;
+  padding: 2px;
+  background: linear-gradient(135deg, var(--primary-500), var(--accent-500));
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.influencer-card:hover::before {
+  opacity: 1;
+}
+```
+
+### Form Elements 表单元素
+
+#### Input Field
+```css
+.input {
+  /* Layout */
+  width: 100%;
+  padding: var(--space-3) var(--space-4);
+  
+  /* Typography */
+  font-family: var(--font-primary);
+  font-size: var(--text-base);
+  color: var(--gray-900);
+  
+  /* Style */
+  background-color: var(--white);
+  border: 2px solid var(--gray-200);
+  border-radius: 0.5rem;
+  outline: none;
+  transition: all 0.2s ease;
+}
+
+.input:focus {
+  border-color: var(--primary-500);
+  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+}
+
+.input::placeholder {
+  color: var(--gray-400);
+}
+```
+
+#### Select Dropdown
+```css
+.select {
+  /* Inherits input styles */
+  appearance: none;
+  background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e");
+  background-repeat: no-repeat;
+  background-position: right var(--space-3) center;
+  background-size: 1.5em;
+  padding-right: var(--space-10);
+}
+```
+
+### Navigation 导航
+
+#### Header Navigation
+```css
+.nav-header {
+  /* Layout */
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: var(--space-4) 0;
+  
+  /* Style */
+  background-color: var(--white);
+  border-bottom: 1px solid var(--gray-100);
+}
+
+.nav-link {
+  /* Typography */
+  font-family: var(--font-primary);
+  font-size: var(--text-base);
+  font-weight: var(--font-medium);
+  color: var(--gray-700);
+  text-decoration: none;
+  
+  /* Layout */
+  padding: var(--space-2) var(--space-4);
+  margin: 0 var(--space-1);
+  border-radius: 0.5rem;
+  transition: all 0.2s ease;
+}
+
+.nav-link:hover {
+  color: var(--primary-600);
+  background-color: var(--primary-100);
+}
+
+.nav-link.active {
+  color: var(--primary-600);
+  background-color: var(--primary-100);
+}
+```
+
+## 6. Motion & Animation 动效规范
+
+### Timing Functions 时间函数
+```css
+:root {
+  /* Easing Functions */
+  --ease-in: cubic-bezier(0.4, 0, 1, 1);
+  --ease-out: cubic-bezier(0, 0, 0.2, 1);
+  --ease-in-out: cubic-bezier(0.4, 0, 0.2, 1);
+  
+  /* Duration */
+  --duration-fast: 150ms;
+  --duration-normal: 300ms;
+  --duration-slow: 500ms;
+}
+```
+
+### Micro-interactions 微交互
+```css
+/* Hover Lift */
+.hover-lift {
+  transition: transform var(--duration-normal) var(--ease-out),
+              box-shadow var(--duration-normal) var(--ease-out);
+}
+
+.hover-lift:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.1);
+}
+
+/* Scale on Click */
+.click-scale {
+  transition: transform var(--duration-fast) var(--ease-in-out);
+}
+
+.click-scale:active {
+  transform: scale(0.98);
+}
+
+/* Fade In */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.fade-in {
+  animation: fadeIn var(--duration-normal) var(--ease-out);
+}
+```
+
+### Loading States 加载状态
+```css
+/* Skeleton Screen */
+.skeleton {
+  background: linear-gradient(
+    90deg,
+    var(--gray-200) 25%,
+    var(--gray-100) 50%,
+    var(--gray-200) 75%
+  );
+  background-size: 200% 100%;
+  animation: loading 1.5s infinite;
+}
+
+@keyframes loading {
+  0% {
+    background-position: 200% 0;
+  }
+  100% {
+    background-position: -200% 0;
+  }
+}
+
+/* Spinner */
+.spinner {
+  width: 24px;
+  height: 24px;
+  border: 3px solid var(--gray-200);
+  border-top-color: var(--primary-600);
+  border-radius: 50%;
+  animation: spin 0.8s linear infinite;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+```
+
+## 7. Layout Patterns 布局模式
+
+### Dashboard Layout
+```css
+.dashboard-layout {
+  display: grid;
+  grid-template-columns: 260px 1fr;
+  grid-template-rows: auto 1fr;
+  grid-template-areas:
+    "sidebar header"
+    "sidebar main";
+  min-height: 100vh;
+}
+
+.dashboard-sidebar {
+  grid-area: sidebar;
+  background-color: var(--gray-50);
+  border-right: 1px solid var(--gray-200);
+  padding: var(--space-6);
+}
+
+.dashboard-header {
+  grid-area: header;
+  background-color: var(--white);
+  border-bottom: 1px solid var(--gray-200);
+  padding: var(--space-4) var(--space-6);
+}
+
+.dashboard-main {
+  grid-area: main;
+  background-color: var(--gray-50);
+  padding: var(--space-6);
+  overflow-y: auto;
+}
+```
+
+### Card Grid Layout
+```css
+.card-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  gap: var(--space-6);
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .card-grid {
+    grid-template-columns: 1fr;
+  }
+}
+```
+
+### Split Layout
+```css
+.split-layout {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-8);
+  align-items: center;
+  min-height: 100vh;
+}
+
+@media (max-width: 1024px) {
+  .split-layout {
+    grid-template-columns: 1fr;
+    gap: var(--space-6);
+  }
+}
+```
+
+## 8. Responsive Design 响应式设计
+
+### Breakpoints 断点
+```css
+:root {
+  /* Mobile First Breakpoints */
+  --screen-sm: 640px;   /* Small devices */
+  --screen-md: 768px;   /* Medium devices */
+  --screen-lg: 1024px;  /* Large devices */
+  --screen-xl: 1280px;  /* Extra large devices */
+  --screen-2xl: 1536px; /* 2X large devices */
+}
+
+/* Media Query Mixins */
+@media (min-width: 640px) {
+  /* sm: Small devices and up */
+}
+
+@media (min-width: 768px) {
+  /* md: Medium devices and up */
+}
+
+@media (min-width: 1024px) {
+  /* lg: Large devices and up */
+}
+
+@media (min-width: 1280px) {
+  /* xl: Extra large devices and up */
+}
+```
+
+### Responsive Typography
+```css
+/* Mobile First Typography Scale */
+.heading-display {
+  font-size: 2rem; /* 32px on mobile */
+}
+
+@media (min-width: 768px) {
+  .heading-display {
+    font-size: 2.5rem; /* 40px on tablet */
+  }
+}
+
+@media (min-width: 1024px) {
+  .heading-display {
+    font-size: 3rem; /* 48px on desktop */
+  }
+}
+```
+
+## 9. Accessibility 可访问性
+
+### Focus States 焦点状态
+```css
+/* Focus Visible */
+:focus-visible {
+  outline: 3px solid var(--primary-500);
+  outline-offset: 2px;
+}
+
+/* Remove default focus for mouse users */
+:focus:not(:focus-visible) {
+  outline: none;
+}
+```
+
+### ARIA Labels
+```html
+<!-- Button with icon only -->
+<button class="btn-icon" aria-label="Close dialog">
+  <svg><!-- Close icon --></svg>
+</button>
+
+<!-- Form field -->
+<label for="email" class="sr-only">Email address</label>
+<input 
+  type="email" 
+  id="email" 
+  class="input" 
+  placeholder="Enter your email"
+  aria-required="true"
+  aria-invalid="false"
+/>
+```
+
+### Screen Reader Only
+```css
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border-width: 0;
+}
+```
+
+## 10. Dark Mode 深色模式
+
+### Dark Color Scheme
+```css
+@media (prefers-color-scheme: dark) {
+  :root {
+    /* Dark mode colors */
+    --bg-primary: #0F172A;
+    --bg-secondary: #1E293B;
+    --bg-tertiary: #334155;
+    
+    /* Text colors in dark mode */
+    --text-primary: #F1F5F9;
+    --text-secondary: #CBD5E1;
+    --text-tertiary: #94A3B8;
+    
+    /* Adjusted primary colors */
+    --primary-600-dark: #3B82F6;
+    --primary-500-dark: #60A5FA;
+    --primary-400-dark: #93C5FD;
+  }
+  
+  /* Dark mode specific styles */
+  body {
+    background-color: var(--bg-primary);
+    color: var(--text-primary);
+  }
+  
+  .card {
+    background-color: var(--bg-secondary);
+    border-color: var(--bg-tertiary);
+  }
+}
+```
+
+### Toggle Implementation
+```javascript
+// Dark mode toggle
+const toggleDarkMode = () => {
+  const html = document.documentElement;
+  const isDark = html.classList.contains('dark');
+  
+  if (isDark) {
+    html.classList.remove('dark');
+    localStorage.setItem('theme', 'light');
+  } else {
+    html.classList.add('dark');
+    localStorage.setItem('theme', 'dark');
+  }
+};
+
+// Check user preference on load
+const checkTheme = () => {
+  const savedTheme = localStorage.getItem('theme');
+  const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+  
+  if (savedTheme === 'dark' || (!savedTheme && prefersDark)) {
+    document.documentElement.classList.add('dark');
+  }
+};
+
+checkTheme();
+```
+
+## 11. Special Effects 特效
+
+### Gradient Overlays
+```css
+/* Hero Gradient */
+.gradient-hero {
+  background: linear-gradient(
+    135deg,
+    rgba(37, 99, 235, 0.1) 0%,
+    rgba(124, 58, 237, 0.1) 100%
+  );
+  backdrop-filter: blur(10px);
+}
+
+/* Text Gradient */
+.gradient-text {
+  background: linear-gradient(
+    135deg,
+    var(--primary-600) 0%,
+    var(--accent-600) 100%
+  );
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+```
+
+### Glass Morphism
+```css
+.glass {
+  background: rgba(255, 255, 255, 0.7);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+}
+```
+
+### Neumorphism (Subtle)
+```css
+.neumorphic {
+  background: var(--gray-100);
+  border-radius: 1rem;
+  box-shadow: 
+    8px 8px 16px rgba(0, 0, 0, 0.08),
+    -8px -8px 16px rgba(255, 255, 255, 0.9);
+}
+
+.neumorphic-inset {
+  box-shadow: 
+    inset 4px 4px 8px rgba(0, 0, 0, 0.08),
+    inset -4px -4px 8px rgba(255, 255, 255, 0.9);
+}
+```
+
+## 12. Component States 组件状态
+
+### Interactive States
+```css
+/* Default State */
+.component {
+  /* Base styles */
+}
+
+/* Hover State */
+.component:hover {
+  /* Hover styles */
+}
+
+/* Active/Pressed State */
+.component:active {
+  /* Active styles */
+}
+
+/* Focus State */
+.component:focus-visible {
+  /* Focus styles */
+}
+
+/* Disabled State */
+.component:disabled,
+.component.disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  pointer-events: none;
+}
+
+/* Loading State */
+.component.loading {
+  position: relative;
+  color: transparent;
+}
+
+.component.loading::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  /* Spinner styles */
+}
+
+/* Error State */
+.component.error {
+  border-color: var(--error-500);
+  color: var(--error-600);
+}
+
+/* Success State */
+.component.success {
+  border-color: var(--success-500);
+  color: var(--success-600);
+}
+```
+
+## 13. Data Visualization 数据可视化
+
+### Chart Colors
+```css
+:root {
+  /* Chart color palette */
+  --chart-1: #3B82F6; /* Blue */
+  --chart-2: #8B5CF6; /* Purple */
+  --chart-3: #10B981; /* Green */
+  --chart-4: #F59E0B; /* Amber */
+  --chart-5: #EF4444; /* Red */
+  --chart-6: #06B6D4; /* Cyan */
+  --chart-7: #EC4899; /* Pink */
+  --chart-8: #6366F1; /* Indigo */
+}
+```
+
+### Chart Container
+```css
+.chart-container {
+  background-color: var(--white);
+  border-radius: 1rem;
+  padding: var(--space-6);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+}
+
+.chart-title {
+  font-size: var(--text-lg);
+  font-weight: var(--font-semibold);
+  color: var(--gray-900);
+  margin-bottom: var(--space-4);
+}
+
+.chart-legend {
+  display: flex;
+  gap: var(--space-4);
+  margin-top: var(--space-4);
+  font-size: var(--text-sm);
+  color: var(--gray-600);
+}
+```
+
+## 14. Best Practices 最佳实践
+
+### Do's ✅
+1. **保持一致性**：在整个应用中使用相同的设计模式
+2. **优先考虑可读性**：确保文本对比度符合WCAG标准
+3. **响应式优先**：从移动端开始设计，逐步扩展到桌面端
+4. **性能优化**：使用CSS变量减少重复，优化动画性能
+5. **可访问性**：为所有交互元素提供键盘导航和屏幕阅读器支持
+
+### Don'ts ❌
+1. **避免过度设计**：不要使用太多装饰性元素
+2. **避免不一致的间距**：始终使用间距系统中的值
+3. **避免低对比度**：确保文本与背景有足够的对比度
+4. **避免过多动效**：动画应该有目的性，不要分散用户注意力
+5. **避免忽视边缘情况**：考虑空状态、错误状态和加载状态
+
+## 15. Implementation Examples 实现示例
+
+### Influencer Profile Card
+```html
+<div class="influencer-card">
+  <div class="flex items-center space-x-4">
+    <img 
+      src="avatar.jpg" 
+      alt="Influencer name" 
+      class="w-16 h-16 rounded-full object-cover"
+    />
+    <div class="flex-1">
+      <h3 class="text-lg font-semibold text-gray-900">Sarah Johnson</h3>
+      <p class="text-sm text-gray-600">@sarahjohnson</p>
+    </div>
+    <span class="badge badge-primary">Verified</span>
+  </div>
+  
+  <div class="mt-4 grid grid-cols-3 gap-4 text-center">
+    <div>
+      <p class="text-2xl font-bold text-gray-900">125K</p>
+      <p class="text-sm text-gray-600">Followers</p>
+    </div>
+    <div>
+      <p class="text-2xl font-bold text-gray-900">4.8%</p>
+      <p class="text-sm text-gray-600">Engagement</p>
+    </div>
+    <div>
+      <p class="text-2xl font-bold text-gray-900">$2.5K</p>
+      <p class="text-sm text-gray-600">Avg. Rate</p>
+    </div>
+  </div>
+  
+  <div class="mt-4 flex gap-2">
+    <button class="btn-primary flex-1">View Profile</button>
+    <button class="btn-secondary flex-1">Message</button>
+  </div>
+</div>
+```
+
+### Campaign Dashboard
+```html
+<div class="dashboard-layout">
+  <!-- Sidebar -->
+  <aside class="dashboard-sidebar">
+    <nav class="space-y-2">
+      <a href="#" class="nav-link active">
+        <svg><!-- Icon --></svg>
+        Dashboard
+      </a>
+      <a href="#" class="nav-link">
+        <svg><!-- Icon --></svg>
+        Campaigns
+      </a>
+      <a href="#" class="nav-link">
+        <svg><!-- Icon --></svg>
+        Influencers
+      </a>
+    </nav>
+  </aside>
+  
+  <!-- Header -->
+  <header class="dashboard-header">
+    <h1 class="heading-page">Campaign Overview</h1>
+  </header>
+  
+  <!-- Main Content -->
+  <main class="dashboard-main">
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+      <!-- Metric Cards -->
+      <div class="card">
+        <p class="text-sm text-gray-600">Total Reach</p>
+        <p class="text-3xl font-bold text-gray-900 mt-2">2.5M</p>
+        <p class="text-sm text-success-600 mt-2">+12.5% from last month</p>
+      </div>
+      <!-- More metric cards... -->
+    </div>
+  </main>
+</div>
+```
+
