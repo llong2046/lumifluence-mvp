@@ -1,0 +1,715 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lumifluence Admin - Dashboard</title>
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Poppins:wght@600;700&display=swap" rel="stylesheet">
+    
+    <style>
+        /* Admin Color System */
+        :root {
+            /* Dark Backgrounds */
+            --admin-bg-primary: #0F172A;
+            --admin-bg-secondary: #1E293B;
+            --admin-bg-tertiary: #1E1B2F;
+            --admin-bg-elevated: #2A2744;
+            
+            /* Glassmorphic */
+            --admin-glass-dark: rgba(30, 41, 59, 0.7);
+            --admin-glass-light: rgba(51, 65, 85, 0.3);
+            --admin-glass-border: rgba(148, 163, 184, 0.1);
+            
+            /* Theme Colors */
+            --admin-primary-600: #3B82F6;
+            --admin-primary-500: #60A5FA;
+            --admin-primary-400: #93C5FD;
+            --admin-primary-glow: rgba(59, 130, 246, 0.25);
+            
+            --admin-accent-600: #8B5CF6;
+            --admin-accent-500: #A78BFA;
+            --admin-accent-400: #C084FC;
+            --admin-accent-glow: rgba(139, 92, 246, 0.25);
+            
+            /* Gradients */
+            --admin-gradient-primary: linear-gradient(135deg, #3B82F6 0%, #8B5CF6 100%);
+            --admin-gradient-surface: linear-gradient(180deg, rgba(59, 130, 246, 0.08) 0%, rgba(139, 92, 246, 0.04) 100%);
+            
+            /* Status Colors */
+            --admin-success: #10B981;
+            --admin-success-glow: rgba(16, 185, 129, 0.25);
+            --admin-warning: #F59E0B;
+            --admin-warning-glow: rgba(245, 158, 11, 0.25);
+            --admin-error: #EF4444;
+            --admin-error-glow: rgba(239, 68, 68, 0.25);
+            --admin-info: #06B6D4;
+            --admin-info-glow: rgba(6, 182, 212, 0.25);
+            
+            /* Text Colors */
+            --admin-text-primary: #F1F5F9;
+            --admin-text-secondary: #94A3B8;
+            --admin-text-muted: #64748B;
+            --admin-text-inverse: #0F172A;
+            
+            /* Typography */
+            --admin-font-primary: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            --admin-font-display: 'Poppins', 'Inter', sans-serif;
+            
+            /* Layout */
+            --admin-sidebar-width: 260px;
+            --admin-header-height: 72px;
+            --admin-gap: 20px;
+            
+            /* Spacing */
+            --admin-space-1: 4px;
+            --admin-space-2: 8px;
+            --admin-space-3: 12px;
+            --admin-space-4: 16px;
+            --admin-space-5: 20px;
+            --admin-space-6: 24px;
+            --admin-space-8: 32px;
+        }
+        
+        /* Reset */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: var(--admin-font-primary);
+            background-color: var(--admin-bg-primary);
+            color: var(--admin-text-primary);
+            line-height: 1.6;
+        }
+        
+        /* Dashboard Layout */
+        .admin-layout {
+            display: grid;
+            grid-template-columns: var(--admin-sidebar-width) 1fr;
+            grid-template-rows: var(--admin-header-height) 1fr;
+            grid-template-areas:
+                "sidebar header"
+                "sidebar main";
+            min-height: 100vh;
+        }
+        
+        /* Sidebar */
+        .admin-sidebar {
+            grid-area: sidebar;
+            background: var(--admin-glass-dark);
+            backdrop-filter: blur(12px);
+            border-right: 1px solid var(--admin-glass-border);
+            padding: var(--admin-space-6);
+        }
+        
+        .admin-logo {
+            display: flex;
+            align-items: center;
+            gap: var(--admin-space-3);
+            margin-bottom: var(--admin-space-8);
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: var(--admin-text-primary);
+        }
+        
+        .admin-logo svg {
+            width: 32px;
+            height: 32px;
+        }
+        
+        .admin-nav {
+            display: flex;
+            flex-direction: column;
+            gap: var(--admin-space-2);
+        }
+        
+        .admin-nav-item {
+            display: flex;
+            align-items: center;
+            gap: var(--admin-space-3);
+            padding: var(--admin-space-3) var(--admin-space-4);
+            border-radius: 12px;
+            color: var(--admin-text-secondary);
+            text-decoration: none;
+            transition: all 0.2s ease;
+            position: relative;
+            cursor: pointer;
+        }
+        
+        .admin-nav-item:hover {
+            color: var(--admin-text-primary);
+            background: var(--admin-primary-glow);
+        }
+        
+        .admin-nav-item.active {
+            color: var(--admin-primary-400);
+            background: var(--admin-primary-glow);
+        }
+        
+        .admin-nav-item.active::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 3px;
+            height: 24px;
+            background: var(--admin-gradient-primary);
+            border-radius: 0 3px 3px 0;
+            box-shadow: 0 0 12px rgba(59, 130, 246, 0.6);
+        }
+        
+        /* Header */
+        .admin-header {
+            grid-area: header;
+            background: var(--admin-glass-dark);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid var(--admin-glass-border);
+            padding: 0 var(--admin-space-6);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        
+        .admin-search {
+            background: var(--admin-bg-tertiary);
+            border: 1px solid var(--admin-glass-border);
+            border-radius: 12px;
+            padding: var(--admin-space-2) var(--admin-space-4);
+            color: var(--admin-text-primary);
+            width: 320px;
+            transition: all 0.3s ease;
+            font-size: 14px;
+        }
+        
+        .admin-search:focus {
+            border-color: var(--admin-primary-500);
+            box-shadow: 0 0 0 3px var(--admin-primary-glow);
+            outline: none;
+        }
+        
+        .admin-header-actions {
+            display: flex;
+            align-items: center;
+            gap: var(--admin-space-4);
+        }
+        
+        .admin-avatar {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            border: 2px solid var(--admin-glass-border);
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+        
+        .admin-avatar:hover {
+            border-color: var(--admin-primary-500);
+            box-shadow: 0 0 12px var(--admin-primary-glow);
+        }
+        
+        /* Main Content */
+        .admin-main {
+            grid-area: main;
+            padding: var(--admin-space-6);
+            overflow-y: auto;
+        }
+        
+        .admin-container {
+            max-width: 1440px;
+            margin: 0 auto;
+        }
+        
+        /* Page Title */
+        .admin-page-header {
+            margin-bottom: var(--admin-space-8);
+        }
+        
+        .admin-page-title {
+            font-family: var(--admin-font-display);
+            font-size: 2rem;
+            font-weight: 600;
+            color: var(--admin-text-primary);
+            margin-bottom: var(--admin-space-2);
+        }
+        
+        .admin-page-subtitle {
+            color: var(--admin-text-secondary);
+        }
+        
+        /* Grid */
+        .admin-grid {
+            display: grid;
+            gap: var(--admin-gap);
+        }
+        
+        /* KPI Cards */
+        .admin-kpi-card {
+            background: var(--admin-bg-secondary);
+            border: 1px solid var(--admin-glass-border);
+            border-radius: 16px;
+            padding: var(--admin-space-6);
+            position: relative;
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+        
+        .admin-kpi-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 12px 24px rgba(0, 0, 0, 0.4);
+        }
+        
+        .admin-kpi-value {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--admin-text-primary);
+            line-height: 1;
+            margin-bottom: var(--admin-space-2);
+        }
+        
+        .admin-kpi-label {
+            font-size: 0.875rem;
+            color: var(--admin-text-secondary);
+            margin-bottom: var(--admin-space-4);
+        }
+        
+        .admin-kpi-trend {
+            display: inline-flex;
+            align-items: center;
+            gap: var(--admin-space-1);
+            padding: var(--admin-space-1) var(--admin-space-2);
+            border-radius: 6px;
+            font-size: 0.75rem;
+            font-weight: 500;
+        }
+        
+        .admin-kpi-trend.up {
+            background: var(--admin-success-glow);
+            color: var(--admin-success);
+        }
+        
+        .admin-kpi-trend.down {
+            background: var(--admin-error-glow);
+            color: var(--admin-error);
+        }
+        
+        /* Card */
+        .admin-card {
+            background: var(--admin-bg-secondary);
+            border: 1px solid var(--admin-glass-border);
+            border-radius: 16px;
+            padding: var(--admin-space-6);
+            position: relative;
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+        
+        .admin-card-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: var(--admin-space-6);
+        }
+        
+        .admin-card-title {
+            font-size: 1.25rem;
+            font-weight: 600;
+            color: var(--admin-text-primary);
+        }
+        
+        /* Buttons */
+        .admin-btn-primary {
+            background: var(--admin-gradient-primary);
+            color: var(--admin-text-inverse);
+            padding: var(--admin-space-3) var(--admin-space-6);
+            border-radius: 10px;
+            font-weight: 500;
+            border: none;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 0.875rem;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: var(--admin-space-2);
+        }
+        
+        .admin-btn-primary:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 8px 24px var(--admin-primary-glow);
+        }
+        
+        .admin-btn-ghost {
+            background: transparent;
+            color: var(--admin-text-secondary);
+            border: none;
+            padding: var(--admin-space-2) var(--admin-space-4);
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            font-size: 0.875rem;
+        }
+        
+        .admin-btn-ghost:hover {
+            background: var(--admin-glass-light);
+            color: var(--admin-text-primary);
+        }
+        
+        /* Table */
+        .admin-table {
+            width: 100%;
+            border-collapse: separate;
+            border-spacing: 0;
+        }
+        
+        .admin-table thead {
+            background: var(--admin-bg-tertiary);
+        }
+        
+        .admin-table th {
+            padding: var(--admin-space-4);
+            text-align: left;
+            font-weight: 500;
+            color: var(--admin-text-secondary);
+            font-size: 0.875rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            border-bottom: 1px solid var(--admin-glass-border);
+        }
+        
+        .admin-table tbody tr {
+            border-bottom: 1px solid var(--admin-glass-border);
+            transition: all 0.2s ease;
+        }
+        
+        .admin-table tbody tr:hover {
+            background: var(--admin-glass-light);
+        }
+        
+        .admin-table td {
+            padding: var(--admin-space-4);
+            color: var(--admin-text-primary);
+        }
+        
+        .admin-table-user {
+            display: flex;
+            align-items: center;
+            gap: var(--admin-space-3);
+        }
+        
+        /* Tags */
+        .admin-tag {
+            display: inline-flex;
+            align-items: center;
+            padding: var(--admin-space-1) var(--admin-space-3);
+            border-radius: 20px;
+            font-size: 0.75rem;
+            font-weight: 500;
+        }
+        
+        .admin-tag-success {
+            background: var(--admin-success-glow);
+            color: var(--admin-success);
+            border: 1px solid var(--admin-success);
+        }
+        
+        .admin-tag-info {
+            background: var(--admin-info-glow);
+            color: var(--admin-info);
+            border: 1px solid var(--admin-info);
+        }
+        
+        .admin-tag-accent {
+            background: var(--admin-accent-glow);
+            color: var(--admin-accent-400);
+            border: 1px solid var(--admin-accent-500);
+        }
+        
+        /* Chart Placeholder */
+        .admin-chart {
+            height: 300px;
+            background: var(--admin-bg-tertiary);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--admin-text-muted);
+            font-size: 0.875rem;
+        }
+        
+        /* Icon styles */
+        .icon {
+            width: 20px;
+            height: 20px;
+            fill: none;
+            stroke: currentColor;
+            stroke-width: 2;
+        }
+        
+        /* Responsive */
+        @media (max-width: 1024px) {
+            .admin-layout {
+                grid-template-columns: 1fr;
+                grid-template-areas:
+                    "header"
+                    "main";
+            }
+            
+            .admin-sidebar {
+                display: none;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="admin-layout">
+        <!-- Sidebar -->
+        <aside class="admin-sidebar">
+            <div class="admin-logo">
+                <svg viewBox="0 0 32 32" fill="none">
+                    <rect x="4" y="4" width="24" height="24" rx="6" fill="url(#gradient1)"/>
+                    <path d="M16 8L20 16L16 24L12 16L16 8Z" fill="white"/>
+                    <defs>
+                        <linearGradient id="gradient1" x1="4" y1="4" x2="28" y2="28">
+                            <stop stop-color="#3B82F6"/>
+                            <stop offset="1" stop-color="#8B5CF6"/>
+                        </linearGradient>
+                    </defs>
+                </svg>
+                Lumifluence Admin
+            </div>
+            
+            <nav class="admin-nav">
+                <a href="#" class="admin-nav-item active">
+                    <svg class="icon" viewBox="0 0 24 24">
+                        <rect x="3" y="3" width="7" height="7"/>
+                        <rect x="14" y="3" width="7" height="7"/>
+                        <rect x="14" y="14" width="7" height="7"/>
+                        <rect x="3" y="14" width="7" height="7"/>
+                    </svg>
+                    Dashboard
+                </a>
+                <a href="#" class="admin-nav-item">
+                    <svg class="icon" viewBox="0 0 24 24">
+                        <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/>
+                        <circle cx="9" cy="7" r="4"/>
+                        <path d="M23 21v-2a4 4 0 0 0-3-3.87"/>
+                        <path d="M16 3.13a4 4 0 0 1 0 7.75"/>
+                    </svg>
+                    Influencers
+                </a>
+                <a href="#" class="admin-nav-item">
+                    <svg class="icon" viewBox="0 0 24 24">
+                        <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/>
+                    </svg>
+                    Campaigns
+                </a>
+                <a href="#" class="admin-nav-item">
+                    <svg class="icon" viewBox="0 0 24 24">
+                        <path d="M3 3v18h18"/>
+                        <path d="m7 16 4-8 4 8"/>
+                        <path d="m15 13 4-4"/>
+                    </svg>
+                    Analytics
+                </a>
+                <a href="#" class="admin-nav-item">
+                    <svg class="icon" viewBox="0 0 24 24">
+                        <circle cx="12" cy="12" r="3"/>
+                        <path d="M12 1v6m0 6v6m11-6h-6m-6 0H1"/>
+                    </svg>
+                    Settings
+                </a>
+            </nav>
+        </aside>
+        
+        <!-- Header -->
+        <header class="admin-header">
+            <input type="search" class="admin-search" placeholder="Search influencers, campaigns...">
+            <div class="admin-header-actions">
+                <button class="admin-btn-ghost">
+                    <svg class="icon" viewBox="0 0 24 24">
+                        <path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/>
+                        <path d="M13.73 21a2 2 0 0 1-3.46 0"/>
+                    </svg>
+                </button>
+                <img src="https://via.placeholder.com/40x40/8B5CF6/FFFFFF?text=JD" class="admin-avatar" alt="User">
+            </div>
+        </header>
+        
+        <!-- Main Content -->
+        <main class="admin-main">
+            <div class="admin-container">
+                <!-- Page Header -->
+                <div class="admin-page-header">
+                    <h1 class="admin-page-title">Dashboard Overview</h1>
+                    <p class="admin-page-subtitle">Welcome back! Here's what's happening with your influencer campaigns.</p>
+                </div>
+                
+                <!-- KPI Cards -->
+                <div class="admin-grid" style="grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); margin-bottom: 32px;">
+                    <div class="admin-kpi-card">
+                        <div class="admin-kpi-value">125K</div>
+                        <div class="admin-kpi-label">Total Influencers</div>
+                        <span class="admin-kpi-trend up">
+                            <svg width="12" height="12" viewBox="0 0 12 12" fill="currentColor">
+                                <path d="M6 3L10 7H7V9H5V7H2L6 3Z"/>
+                            </svg>
+                            +12.5%
+                        </span>
+                    </div>
+                    <div class="admin-kpi-card">
+                        <div class="admin-kpi-value">48</div>
+                        <div class="admin-kpi-label">Active Campaigns</div>
+                        <span class="admin-kpi-trend up">
+                            <svg width="12" height="12" viewBox="0 0 12 12" fill="currentColor">
+                                <path d="M6 3L10 7H7V9H5V7H2L6 3Z"/>
+                            </svg>
+                            +8.2%
+                        </span>
+                    </div>
+                    <div class="admin-kpi-card">
+                        <div class="admin-kpi-value">$2.4M</div>
+                        <div class="admin-kpi-label">Total Revenue</div>
+                        <span class="admin-kpi-trend up">
+                            <svg width="12" height="12" viewBox="0 0 12 12" fill="currentColor">
+                                <path d="M6 3L10 7H7V9H5V7H2L6 3Z"/>
+                            </svg>
+                            +24.3%
+                        </span>
+                    </div>
+                    <div class="admin-kpi-card">
+                        <div class="admin-kpi-value">4.8%</div>
+                        <div class="admin-kpi-label">Avg. Engagement</div>
+                        <span class="admin-kpi-trend down">
+                            <svg width="12" height="12" viewBox="0 0 12 12" fill="currentColor">
+                                <path d="M6 9L2 5H5V3H7V5H10L6 9Z"/>
+                            </svg>
+                            -0.3%
+                        </span>
+                    </div>
+                </div>
+                
+                <!-- Chart Section -->
+                <div class="admin-grid" style="grid-template-columns: 2fr 1fr; margin-bottom: 32px;">
+                    <div class="admin-card">
+                        <div class="admin-card-header">
+                            <h2 class="admin-card-title">Revenue Overview</h2>
+                            <button class="admin-btn-ghost">Last 30 days</button>
+                        </div>
+                        <div class="admin-chart">
+                            [Revenue Chart Placeholder]
+                        </div>
+                    </div>
+                    <div class="admin-card">
+                        <div class="admin-card-header">
+                            <h2 class="admin-card-title">Platform Distribution</h2>
+                        </div>
+                        <div class="admin-chart">
+                            [Pie Chart Placeholder]
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Table Section -->
+                <div class="admin-card">
+                    <div class="admin-card-header">
+                        <h2 class="admin-card-title">Recent Influencers</h2>
+                        <button class="admin-btn-primary">
+                            <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor">
+                                <path d="M8 4V12M4 8H12"/>
+                            </svg>
+                            Add New
+                        </button>
+                    </div>
+                    <table class="admin-table">
+                        <thead>
+                            <tr>
+                                <th>Influencer</th>
+                                <th>Platform</th>
+                                <th>Followers</th>
+                                <th>Engagement</th>
+                                <th>Status</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>
+                                    <div class="admin-table-user">
+                                        <img src="https://via.placeholder.com/40x40/3B82F6/FFFFFF?text=SJ" class="admin-avatar" alt="Sarah Johnson">
+                                        <div>
+                                            <div style="font-weight: 500;">Sarah Johnson</div>
+                                            <div style="font-size: 0.875rem; color: var(--admin-text-secondary);">@sarahjohnson</div>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td>
+                                    <span class="admin-tag admin-tag-info">Instagram</span>
+                                </td>
+                                <td>125K</td>
+                                <td>4.8%</td>
+                                <td>
+                                    <span class="admin-tag admin-tag-success">Active</span>
+                                </td>
+                                <td>
+                                    <button class="admin-btn-ghost">View</button>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <div class="admin-table-user">
+                                        <img src="https://via.placeholder.com/40x40/8B5CF6/FFFFFF?text=MK" class="admin-avatar" alt="Mike Kim">
+                                        <div>
+                                            <div style="font-weight: 500;">Mike Kim</div>
+                                            <div style="font-size: 0.875rem; color: var(--admin-text-secondary);">@mikekim</div>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td>
+                                    <span class="admin-tag admin-tag-accent">TikTok</span>
+                                </td>
+                                <td>2.3M</td>
+                                <td>6.2%</td>
+                                <td>
+                                    <span class="admin-tag admin-tag-success">Active</span>
+                                </td>
+                                <td>
+                                    <button class="admin-btn-ghost">View</button>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <div class="admin-table-user">
+                                        <img src="https://via.placeholder.com/40x40/10B981/FFFFFF?text=EW" class="admin-avatar" alt="Emma Wilson">
+                                        <div>
+                                            <div style="font-weight: 500;">Emma Wilson</div>
+                                            <div style="font-size: 0.875rem; color: var(--admin-text-secondary);">@emmawilson</div>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td>
+                                    <span class="admin-tag admin-tag-info">Instagram</span>
+                                </td>
+                                <td>88K</td>
+                                <td>5.1%</td>
+                                <td>
+                                    <span class="admin-tag admin-tag-success">Active</span>
+                                </td>
+                                <td>
+                                    <button class="admin-btn-ghost">View</button>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </main>
+    </div>
+</body>
+</html> 
