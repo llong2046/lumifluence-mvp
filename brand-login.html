@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Brand Login - Lumifluence</title>
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Poppins:wght@600;700&display=swap" rel="stylesheet">
+    
+    <!-- Styles -->
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="login-split">
+        <!-- Left Side - Login Form -->
+        <div class="login-form-section">
+            <div class="w-full max-w-md">
+                <!-- Logo -->
+                <a href="/" class="navbar-brand mb-8" style="justify-content: center;">
+                    <svg width="40" height="40" viewBox="0 0 32 32" fill="none">
+                        <rect x="4" y="4" width="24" height="24" rx="6" fill="url(#gradient1)"/>
+                        <path d="M16 8L20 16L16 24L12 16L16 8Z" fill="white"/>
+                        <defs>
+                            <linearGradient id="gradient1" x1="4" y1="4" x2="28" y2="28">
+                                <stop stop-color="#3B82F6"/>
+                                <stop offset="1" stop-color="#8B5CF6"/>
+                            </linearGradient>
+                        </defs>
+                    </svg>
+                    Lumifluence
+                </a>
+                
+                <!-- Title -->
+                <div class="text-center mb-8">
+                    <h1 class="heading-subsection mb-2" data-i18n="brandLogin.title">Welcome Back</h1>
+                    <p class="text-body" data-i18n="brandLogin.subtitle">Sign in to manage your campaigns</p>
+                </div>
+                
+                <!-- Social Login -->
+                <div class="social-login">
+                    <button class="social-btn">
+                        <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                            <path d="M19.6 10.23c0-.82-.07-1.61-.2-2.38H10v4.51h5.36c-.23 1.23-.93 2.28-1.97 2.98v2.48h3.19c1.87-1.72 2.95-4.25 2.95-7.59z" fill="#4285F4"/>
+                            <path d="M10 20c2.67 0 4.91-.89 6.54-2.4l-3.19-2.48c-.88.59-2.01.94-3.35.94-2.58 0-4.76-1.74-5.54-4.08H1.19v2.56C2.81 17.78 6.13 20 10 20z" fill="#34A853"/>
+                            <path d="M4.46 11.98c-.2-.59-.31-1.22-.31-1.87s.11-1.28.31-1.87V5.68H1.19C.43 7.19 0 8.93 0 10.75s.43 3.56 1.19 5.07l3.27-2.56z" fill="#FBBC04"/>
+                            <path d="M10 3.94c1.45 0 2.76.5 3.78 1.48l2.84-2.84C14.91.98 12.67 0 10 0 6.13 0 2.81 2.22 1.19 5.46l3.27 2.56C5.24 5.68 7.42 3.94 10 3.94z" fill="#EA4335"/>
+                        </svg>
+                        <span data-i18n="brandLogin.googleLogin">Google</span>
+                    </button>
+                    <button class="social-btn">
+                        <svg width="20" height="20" viewBox="0 0 20 20" fill="#1877F2">
+                            <path d="M20 10c0-5.5-4.5-10-10-10S0 4.5 0 10c0 5 3.7 9.1 8.4 9.9v-7H5.9V10h2.5V7.8c0-2.5 1.5-3.9 3.8-3.9 1.1 0 2.2.2 2.2.2v2.5h-1.3c-1.2 0-1.6.8-1.6 1.6V10h2.8l-.4 2.9h-2.3v7C16.3 19.1 20 15 20 10z"/>
+                        </svg>
+                        <span data-i18n="brandLogin.facebookLogin">Facebook</span>
+                    </button>
+                </div>
+                
+                <div class="divider" data-i18n="brandLogin.orContinue">or continue with email</div>
+                
+                <!-- Login Form -->
+                <form>
+                    <div class="form-group">
+                        <label class="form-label" for="email" data-i18n="brandLogin.emailLabel">Email Address</label>
+                        <input 
+                            type="email" 
+                            id="email" 
+                            class="form-input" 
+                            placeholder="your@email.com"
+                            required
+                        />
+                    </div>
+                    
+                    <div class="form-group">
+                        <div class="flex justify-between mb-2">
+                            <label class="form-label" for="password" data-i18n="brandLogin.passwordLabel">Password</label>
+                            <a href="#" class="text-sm" style="color: var(--primary-600); text-decoration: none;" data-i18n="brandLogin.forgotPassword">Forgot password?</a>
+                        </div>
+                        <input 
+                            type="password" 
+                            id="password" 
+                            class="form-input" 
+                            placeholder="••••••••"
+                            required
+                        />
+                    </div>
+                    
+                    <div class="form-group">
+                        <label class="flex items-center gap-2">
+                            <input type="checkbox" style="width: auto;">
+                            <span class="text-sm" data-i18n="brandLogin.rememberMe">Remember me</span>
+                        </label>
+                    </div>
+                    
+                    <button type="submit" class="btn btn-primary btn-lg w-full mb-4" data-i18n="brandLogin.signIn">
+                        Sign In
+                    </button>
+                    
+                    <p class="text-center text-sm" style="color: var(--gray-600);">
+                        <span data-i18n="brandLogin.noAccount">Don't have an account?</span>
+                        <a href="#" style="color: var(--primary-600); text-decoration: none; font-weight: 500;" data-i18n="brandLogin.signUp">Sign up</a>
+                    </p>
+                </form>
+                
+                <!-- Creator Login Link -->
+                <div class="mt-8 text-center">
+                    <p class="text-sm" style="color: var(--gray-500);">
+                        <span data-i18n="brandLogin.areYouCreator">Are you a creator?</span>
+                        <a href="creator-login.html" style="color: var(--accent-600); text-decoration: none; font-weight: 500;" data-i18n="brandLogin.creatorLogin">Login here</a>
+                    </p>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Right Side - Hero Section -->
+        <div class="login-hero-section">
+            <div class="max-w-xl text-center" style="position: relative; z-index: 1;">
+                <h2 class="heading-section mb-6" style="color: white;" data-i18n="brandLogin.hero.title">
+                    Scale Your Brand with Data-Driven Influencer Marketing
+                </h2>
+                <p class="text-lead mb-8" style="color: rgba(255, 255, 255, 0.9);" data-i18n="brandLogin.hero.subtitle">
+                    Join 10,000+ brands using Lumifluence to discover creators, manage campaigns, and measure ROI.
+                </p>
+                
+                <!-- Benefits -->
+                <div class="text-left" style="max-width: 400px; margin: 0 auto;">
+                    <div class="flex items-center gap-3 mb-4">
+                        <div style="width: 48px; height: 48px; background: rgba(255, 255, 255, 0.2); border-radius: 12px; display: flex; align-items: center; justify-content: center;">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="white">
+                                <path d="M9 11H7a5 5 0 0 1 0-10h2m6 0h2a5 5 0 1 1 0 10h-2m-6 0h6"/>
+                            </svg>
+                        </div>
+                        <div>
+                            <h4 style="font-weight: 600; margin-bottom: 4px;" data-i18n="brandLogin.hero.benefit1.title">Smart Matching</h4>
+                            <p style="font-size: 0.875rem; opacity: 0.9;" data-i18n="brandLogin.hero.benefit1.desc">AI-powered creator discovery</p>
+                        </div>
+                    </div>
+                    
+                    <div class="flex items-center gap-3 mb-4">
+                        <div style="width: 48px; height: 48px; background: rgba(255, 255, 255, 0.2); border-radius: 12px; display: flex; align-items: center; justify-content: center;">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="white">
+                                <path d="M3 3v18h18M9 17V9m4 8V5m4 12v-6"/>
+                            </svg>
+                        </div>
+                        <div>
+                            <h4 style="font-weight: 600; margin-bottom: 4px;" data-i18n="brandLogin.hero.benefit2.title">Real-time Analytics</h4>
+                            <p style="font-size: 0.875rem; opacity: 0.9;" data-i18n="brandLogin.hero.benefit2.desc">Track performance instantly</p>
+                        </div>
+                    </div>
+                    
+                    <div class="flex items-center gap-3">
+                        <div style="width: 48px; height: 48px; background: rgba(255, 255, 255, 0.2); border-radius: 12px; display: flex; align-items: center; justify-content: center;">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="white">
+                                <path d="M12 2L2 7v10c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V7l-10-5z"/>
+                            </svg>
+                        </div>
+                        <div>
+                            <h4 style="font-weight: 600; margin-bottom: 4px;" data-i18n="brandLogin.hero.benefit3.title">Secure & Compliant</h4>
+                            <p style="font-size: 0.875rem; opacity: 0.9;" data-i18n="brandLogin.hero.benefit3.desc">Enterprise-grade security</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Testimonial -->
+                <div style="margin-top: 3rem; padding: 1.5rem; background: rgba(255, 255, 255, 0.1); border-radius: 1rem; backdrop-filter: blur(10px);">
+                    <p style="font-style: italic; margin-bottom: 1rem;" data-i18n="brandLogin.hero.testimonial">
+                        "Lumifluence transformed how we approach influencer marketing. We've seen a 300% increase in ROI within 6 months."
+                    </p>
+                    <div class="flex items-center justify-center gap-3">
+                        <img src="https://via.placeholder.com/40x40/ffffff/000000?text=SJ" alt="Avatar" style="width: 40px; height: 40px; border-radius: 50%;">
+                        <div style="text-align: left;">
+                            <p style="font-weight: 600; font-size: 0.875rem;">Sarah Johnson</p>
+                            <p style="font-size: 0.75rem; opacity: 0.8;">CMO, TechCorp</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <script src="app.js"></script>
+</body>
+</html> 
