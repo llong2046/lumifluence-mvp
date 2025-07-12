@@ -13,12 +13,16 @@
 
 ```
 lumifluence-mvp/
-├── index.html          # 网站首页
-├── brand-login.html    # 品牌方登录页
-├── creator-login.html  # 创作者登录页
-├── styles.css         # 全局样式文件
-├── app.js            # JavaScript交互逻辑
-└── README.md         # 项目说明文档
+├── index.html                    # 网站首页
+├── brand-login.html              # 品牌方登录页
+├── creator-login.html            # 创作者登录页
+├── styles.css                   # 全局样式文件
+├── app.js                       # JavaScript交互逻辑
+├── admin-ui-design-system.md    # 管理系统UI设计规范
+├── admin-demo.html              # 管理系统演示页面
+├── ADMIN-UI-GUIDE.md            # 管理系统UI快速参考
+├── UI-DESIGN-GUIDE.md           # 前端UI快速参考
+└── README.md                    # 项目说明文档
 ```
 
 ## 🎨 设计特色
@@ -55,6 +59,7 @@ lumifluence-mvp/
    - 首页：http://localhost:8080/
    - 品牌方登录：http://localhost:8080/brand-login.html
    - 创作者登录：http://localhost:8080/creator-login.html
+   - 管理系统演示：http://localhost:8080/admin-demo.html
 
 ## 🌍 多语言切换
 
